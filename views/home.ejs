@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<h1 class="mb-4">All Blog Posts</h1>
+
+<form class="mb-4" method="GET" action="/">
+    <div class="input-group">
+        <select name="category" class="form-select">
+            <option value="">All Categories</option>
+            <% categories.forEach(cat => { %>
+                <option value="<%= cat %>" <%= selectedCategory === cat ? 'selected' : '' %>><%= cat %></option>
+            <% }); %>
+        </select>
+        <button class="btn btn-primary" type="submit">Filter</button>
+    </div>
+</form>
+
+<% if (posts.length === 0) { %>
+    <p>No blog posts found.</p>
+<% } else { %>
+    <% posts.forEach(post => { %>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h3><%= post.title %></h3>
+                <small>By <%= post.author %> on <%= post.createdAt %> | Category: <%= post.category %></small>
+            </div>
+            <div class="card-body">
+                <p><%= post.content %></p>
+                <a href="/edit/<%= post.id %>" class="btn btn-sm btn-warning">Edit</a>
+                <form action="/delete/<%= post.id %>" method="POST" class="d-inline">
+                    <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% }) %>
+<% } %>
+
+<%- include('partials/footer') %>
