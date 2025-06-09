@@ -93,15 +93,6 @@ node app.js
 ```
 http://localhost:3000
 ```
-
----
-
-## ⚠ Notes
-
-* No database used; data resets after server restart.
-* Bonus feature for category filtering is implemented.
-* Styling done using Bootstrap 5.
-
 ---
 
 ## ✅ Submission Info
